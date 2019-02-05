@@ -1,0 +1,66 @@
+                    On Overbroad Internet Comments
+
+                            Daniel Collins
+
+_Die Vorrede:_
+--------------
+
+"... The main difference from other projects in high-assurance security is that it uses C++. That's a big mistake since it limits amount of tooling that can be used for verification. I dont imagine a CompCert for C++ coming any time soon. Fortunately, a microkernel shouldnt be a huge rewrite."
+
+A few weeks ago, Emery Hemmingway referenced the [https://lobste.rs/s/hs11hj/genodeos_sculpt_with_visual_composition#c_wflu0z - above comment] he saw on a forum, which he ostensibly saw as part of a larger trend of such similar first reactions to Genode's mentioning being marred by surface-level contentions, like Genode's language choice, instead of on deeper, more architectural concerns. Norman Feske seemed to indicate on the mailing list that it indeed had, and that Genode's use of C++ was a larger point of contention found in this category of internet comments. This fact didn't sit well, perhaps because these comments tend to admonish on the basis of _supposed_ negative consequences of language choice, rather than offering proof of their relevance regarding Genode, or perhaps because, more simply, that the Genode authors generally feel their choice of language and their use of it - have been judicious and justified, that negative consequences have been unfelt, and their potential causes already addressed. I cannot speak for the authors, however.
+
+Norman has, nonetheless, requested that I offer some comment, and so consequently I have. As it happened, I was able to offer a bit more insight on the issue than I would have initially suspected, and he therefore encouraged me to edit my comments and post them here. I've only recently found enough of a break from winter intercession courses to review and edit these comments, and so they've come after some delay. Perhaps, however, given the infamous incorruptibility of internet armchair interlocution, ("bikeshedding"), they may very well be no worse for wear, even given the wait.
+
+Feedback, of course, is welcome.
+
+_Die Rede:_
+-----------
+
+Regarding these sorts of comments, which seem commonly made, I have organized a few thoughts.
+
+A lot of surface-level arguments are made about impressive technologies like Genode (for an example similar in circumstance to Genode, see the postscript [On Portage]) because technologies like Genode are difficult to understand in their fullness - Genode isn't just one or two easily-stated advancements, it is the accumulation of little, good solutions in a variety of areas. Some of said solutions are in subdomains niche enough to be not so easily discovered within an hour of research, which is most likely the upper bound of time the average internet commenter will put into forming his opine. (See the postscript [On Popularity])
+
+I say these language-based arguments are surface-level because language-choice is a surface-level phenomenon. Things are emergent from it, as language is the medium from which more complex things are wrought. By way of analogy, one can go about and critique a construction material, and perhaps some are unworkable, have drawbacks, or are patently inferior to others, but *many* other mechanisms are in play which contribute to the function and failures of the thing constructed. The shape and method of forging of a sword are as important as the choice of alloy; the same is true for software. The sort of support structure uplifting a bridge matters as much as its physical composition. Hence, the general failures of the material from which a thing is built mayn't be, and are not necessarily, consequential regarding the respective shortcomings and successes of the product they compose.
+This is my central thesis. I explore the consequences of this naive analogy as applied to software.
+
+The commenter on lobste.rs has one such argument, falling in the category of "bad language choice" surface-level arguments, his target being Genode's use of C++. His argument is novel, seemingly being that Genode's choice of C++ gives it no prospects of being formally verified. I don't want to dwell on rebutting this argument, but I'd like to make a constructive point. What strikes me about this argument immediately, is the oddity of condemning Genode for not being formally verified. PC OSes generally aren't formally verified - it would be actually more surprising if Genode were close to formal verification (it may be more amenable to verification than other OSes in its class, given the limited TCB, but I digress), because formal verification is, in the status quo of software, - an exception, and not the rule. This unequivocally is a double standard, given the context, a raising of Genode to higher standards of perfection than are applied elsewhere.
+
+The observation I'd like to make about that fact, though, is that the commenter is nitpicking. And, sure, it's fair to say C++ can't be verified via any extant tooling (not that I know of anyway). It is a complex language, and not easiest for software to reason about. But this fact isn't a death sentence. One can, say, call SPARK from C++, and migrate a codebase. Most critiques about C++ follow a similar form - somewhat true in general, but not quite as impactful in specific, and oftentimes either these slights aren't unique to C++, or there are nuanced, realization-level means of contending with the supposed shortcomings. I'll try dissect a few similar, more common critiques:
+
+*1.* C++ programs get bigger if templates are misused. The fear being that this can get non-trivial.
+
+*2.* C++ programs can be harder to read if complex language features are misused. It is easy to contrive C++ examples that are too "expert friendly."
+
+*3.* C++ offers one a wealth of options, (templates or virtual functions? Do we use an object ref + pointer-to-method pair, a std::function instance, a function pointer, or something else?) some might say too many. It takes practice to consistently find the option which makes the most sense.
+
+*4.* C++ has faults and idiosyncrasies. Reading code which doesn't exploit them isn't hard. Reading and reasoning about code that does, is.
+
+Now, Genode and C++ have, despite the doom-and-gloom FUD, gotten along very well together. I'd like to suggest that there are occurrences that happen below the surface, invisible to our internet commenters, that are responsible for the present era of good feeling. In other words, some of the shortcomings of the raw material have been anticipated and compensated for with relative aplomb at Genode, which the internet commenters couldn't have guessed via means of conventional internet-wisdom. Here's my perception.
+
+_1._ Hasn't been a huge problem for Genode. Code is well reused, Genode is small. Genode programs and servers avoid having external dependencies or extraneous functionality ("bloat"), which, in addition to being the greater cause of large binaries, may compound the code size issue templates are known for. Further, templates inflate the binary by a large margin under only specific circumstances. (Large functions being templatized, and instantiated many times, ect.)
+
+On point _2._ - Genode's code style tends to err on the side of colloquialism over expertism. This is a good thing. Where more complex, language-feature-heavy solutions are possible, and some equally-good solution exists that is less expert-friendly, I think the folks at Genode have naturally erred on the latter side. They've also developed a series of useful patterns (new colloquialisms!) and libraries implementing them, which work astonishingly well for the sort of components that usually need be written, which standardizes the choices made, and ensures that they are fitting to the problem at hand. This also addresses point _3._
+
+On point _4._ - I haven't seen much exploitation of C++'s idiosyncrasies in what poking around I did. There seems to be a general desire of keeping the code aesthetically clean and readable in most units. This naturally disposes one against abusing odd corners of the language which inhibit readability or cleanliness.
+
+Note also that many of these hitherto discussed armchair arguments, are not only true of C++. _2._ is also true of C, which has a [https://www.ioccc.org/ - competition] extant devoted to the discovery yet more expert-friendly, obfuscated examples. _3._ is true of computer science in general - there are always many algorithms, practices, or design patterns to choose from. Even _1._ applies to unlikely parties: C programmers are often at fault for inflating binary sizes by overusing macros or the "inline" keyword, for example. I believe the Linux kernel style guide has a little spiel about this somewhere. And, of course, _4._ is the most general, most universally true, of all.
+
+This isn't to say that C++ is to be free of criticism. Nor is it meant as a bashing of C. I quite like C. However, I would certainly argue (and I believe most here would agree with me) that Genode has been able to address any language-borne difficulties, real or imagined, primarily because of the good practices they adopt. Which, as a general rule, can be a far more important factor than language choice. Nonetheless, one outside the circle of Genode-developer-enthusiast-hybrids isn't in a position to ascertain those things, and is more liable to pick on the low-hanging fruit.
+
+Does this account seem accurate?
+- Daniel C.
+
+
+Postscript
+##########
+
+On Portage
+==========
+
+There's an attempt at making a package manager largely compatible with Gentoo's "Portage," called Paludis. It's in C++, and evidently, despite their attention to detail, among other advances, they've seemingly gotten enough flak over language choice that they even made an item in their FAQ (under "General Questions") over it: [https://paludis.exherbo.org/faq/index.html]
+
+On Popularity
+=============
+
+I think this phenomenon, the tendency for most people responding to a subject to not research it thoroughly, is also in part to blame for Genode's lack of visibility, combined with the aforementioned nature of Genode's significance owing itself to many distinct innovations, as opposed to a single, pithy advance amenable to memory and surface-study. Many of the innovations are in papers one has to google for, or explicit in the source code and developer documentation. Developers who work on Genode (either for their own fun, or for work), hence, know about what makes Genode interesting. Suffice it to say that developers are more likely to be on the mailing list, or this website, than on reddit or something. It takes some time to find and understand the exceptional nature of all the many things that make Genode an impressive project. I might cite the seeming fact that some of the IRC conversations, snide internet comments, and other off-hand mentions of Genode tend to dwell on lesser aspects of Genode. One remembers Genode as merely "that microkernel OS that's written in C++," because there aren't many other microkernel OSes in C++ that come to mind, and because the other things that distinguish Genode may take more involvement to pick up and grasp. I don't think that this simple recollection is really actionable, money and business wise, and nor is it particularly conducive to a really productive response to a mention of or news item about Genode. It is for this reason that I find the Criticism section on Wikipedia's Genode page wise for reminding the reader that writing an OS in C++ isn't some mad eccentricity, by citing many examples. I suspect it might be beneficial, both for a reduction in the amount of bikeshedding, as well as an increase in interest among potential customers, for Genode to emphasize the name, nature, and significance of some of its OS' distinguishing advances, in an attempt to get readers to think of these things instead of more surface-level details.
+I'm no physician, however, and my diagnosis may very well be incorrect. If [https://genode.org/documentation/general-overview/index] isn't being read enough, perhaps more won't be. Though, improving that situation, where possible, may be worth thinking about.
