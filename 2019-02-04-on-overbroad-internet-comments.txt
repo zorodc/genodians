@@ -5,7 +5,7 @@
 _Die Vorrede:_
 --------------
 
-"... The main difference from other projects in high-assurance security is that it uses C++. That's a big mistake since it limits amount of tooling that can be used for verification. I dont imagine a CompCert for C++ coming any time soon. Fortunately, a microkernel shouldnt be a huge rewrite."
+_"... The main difference from other projects in high-assurance security is that it uses C++. That's a big mistake since it limits amount of tooling that can be used for verification. I dont imagine a CompCert for C++ coming any time soon. Fortunately, a microkernel shouldnt be a huge rewrite."_
 
 A few weeks ago, Emery Hemmingway referenced the [https://lobste.rs/s/hs11hj/genodeos_sculpt_with_visual_composition#c_wflu0z - above comment] he saw on a forum, which he ostensibly saw as part of a larger trend of such similar first reactions to Genode's mentioning being marred by surface-level contentions, like Genode's language choice, instead of on deeper, more architectural concerns. Norman Feske seemed to indicate on the mailing list that it indeed had, and that Genode's use of C++ was a larger point of contention found in this category of internet comments. This fact didn't sit well, perhaps because these comments tend to admonish on the basis of _supposed_ negative consequences of language choice, rather than offering proof of their relevance regarding Genode, or perhaps because, more simply, that the Genode authors generally feel their choice of language and their use of it - have been judicious and justified, that negative consequences have been unfelt, and their potential causes already addressed. I cannot speak for the authors, however.
 
