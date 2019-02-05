@@ -1,0 +1,3 @@
+	A common, peonic Mathematics student based in California with many aspirations and a side-interest in German Philosophy. I enjoy reading non-fiction and programming in systems languages. Feuerbach's "The Essence of Christianity" and SPARK alike have both become recent infatuations. I interned with Genode Labs last summer, where I developed an as-of-now _basically_ functional implementation of the client side of the Xpra protocol.
+
+*Email:* cykaxzy@tutanota.com
