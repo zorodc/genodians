@@ -49,8 +49,6 @@ Note also that many of these hitherto discussed armchair arguments, are not only
 
 This isn't to say that C++ is to be free of criticism. Nor is it meant as a bashing of C. I quite like C. However, I would certainly argue (and I believe most here would agree with me) that Genode has been able to address any language-borne difficulties, real or imagined, primarily because of the good practices they adopt. Which, as a general rule, can be a far more important factor than language choice. Nonetheless, one outside the circle of Genode-developer-enthusiast-hybrids isn't in a position to ascertain those things, and is more liable to pick on the low-hanging fruit.
 
-Does this account seem accurate?
-
 Postscript
 ##########
 
