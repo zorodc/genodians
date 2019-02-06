@@ -2,7 +2,7 @@
 
                             Daniel Collins
 
-Genode is often remembered not for its more remarkable accomplishments by many who have heard of it, and instead for less identifying qualities of the project. Many of these recollections evolve into naive-sounding commentary or critique based in semi-aphoric generalisms about C++, of XML, or of microkernels, usually without delving into specific evidence on how these technology choices, visible on the surface, affect Genode. This has been especially true of Genode's choice of C++. I examine here the causes of this phenomenon, why, in general, it tends to bring about less constructive conversation - and a footnote-inkling of what might be done about it.
+Genode is often remembered not for its more remarkable accomplishments by many who have heard of it, and instead for less identifying qualities of the project. Many of these recollections evolve into critique based in aphoric generalisms about C++, of XML, or of microkernels. This has been especially true of Genode's choice of C++. I examine here why this is so, and why it tends to bring about less constructive conversaion.
 
 _Die Vorrede:_
 --------------
